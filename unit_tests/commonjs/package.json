@@ -1,0 +1,19 @@
+{
+  "name": "javascriptwithjest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "json-server": "^0.16.3",
+    "node-fetch": "^2.6.1"
+  }
+}

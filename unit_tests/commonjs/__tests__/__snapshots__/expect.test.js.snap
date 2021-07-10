@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stores not less than the 10 characters: toMatchTrimmedSnapshot 1`] = `"extra long"`;
+
+exports[`stores not less than the 15 characters: toMatchTrimmedSnapshot 1`] = `"extra long stri"`;

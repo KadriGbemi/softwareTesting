@@ -1,0 +1,28 @@
+{
+    "projects": [
+      {
+        "id": 1,
+        "title": "Create new homepage banner",
+        "details": "Lorem ipsum",
+        "complete": true
+      },
+      {
+        "id": 2,
+        "title": "Make marketing email",
+        "details": "Lorem ipsum",
+        "complete": false
+      },
+      {
+        "id": 3,
+        "title": "Create new homepage banner",
+        "details": "Lorem ipsum",
+        "complete": true
+      },
+      {
+        "title": "Lorem Ipsum",
+        "details": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. Wikipedia",
+        "complete": true,
+        "id": 4
+      }
+    ]
+  }

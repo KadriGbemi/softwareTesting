@@ -1,0 +1,1 @@
+The "@babel/preset-env" installs all the necessary plugins needed to transpile code. 
