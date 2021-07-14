@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Compare By UI template: toMatchAPITemplate 1`] = `"<div><h1>Title</h1><p>Paragraph with something</<p></div>"`;
+
+exports[`stores not less than the 10 characters: toMatchTrimmedSnapshot 1`] = `" very lon"`;
+
+exports[`stores not less than the 15 characters: toMatchTrimmedSnapshot 1`] = `"xtra long stri"`;
