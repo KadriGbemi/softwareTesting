@@ -13,7 +13,7 @@ async function getAllUsers(client) {
 
 async function findAll() {
   const uri =
-    "mongodb+srv://userCreated:testing1234@cluster0.mqc9d.mongodb.net/users_data?retryWrites=true&w=majority";
+    "mongodb+srv://<username>:<password>@<your-cluster-url>/test?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
   try {
     await client.connect();

@@ -1,10 +1,3 @@
-// Database User from Cluster
-// Username: userCreated
-//password: testing1234
-
-// Connection string
-// mongodb+srv://userCreated:testing1234@cluster0.mqc9d.mongodb.net/UsersProj?retryWrites=true&w=majority
-
 const { MongoClient } = require("mongodb");
 
 async function findUserByEmail(client, userEmail) {
@@ -14,7 +7,7 @@ async function findUserByEmail(client, userEmail) {
     .collection("users_collection")
     .findOne({ email: userEmail });
 
-  return result
+  return result;
 }
 
 async function find(email) {
@@ -23,7 +16,7 @@ async function find(email) {
    * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
    */
   const uri =
-    "mongodb+srv://userCreated:testing1234@cluster0.mqc9d.mongodb.net/users_data?retryWrites=true&w=majority";
+    "mongodb+srv://<username>:<password>@<your-cluster-url>/test?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
   try {
     await client.connect();
