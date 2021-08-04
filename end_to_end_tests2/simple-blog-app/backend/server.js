@@ -1,21 +1,32 @@
 const express = require("express");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
+const create = require("./controller/createUser");
+const find = require("./controller/findUser");
+const findAll = require("./controller/getAllUsers");
+
 const app = express();
 app.use(express.json());
 
 app.use(cors());
-const bcrypt = require("bcrypt");
-let users = [];
-app.get("/users", (req, response) => {
-  response.json(users);
+
+app.get("/users", async (req, response) => {
+  const users = await findAll();
+
+  if (users) {
+    console.log(typeof users);
+    response.json(users);
+  }
 });
 
-app.get("/seed", (req, res) => {
-  users = [];
-  res.status(201).send("Done");
-});
+// The /seed api is to clear the database while testing on cypress
+// app.get("/seed", (req, res) => {
+//   users = [];
+//   res.status(201).send("Done");
+// });
+
 app.post("/users", async (req, res) => {
-  const user = users.find((user) => user.email == req.body.email);
+  const user = await find(req.body.email);
   if (user) {
     res.status(400).send({ message: "User already exists" });
     res.end();
@@ -29,11 +40,11 @@ app.post("/users", async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
       };
-      users.push(user);
+
+      create(user).catch(console.error);
       res.status(201).send({
         success: "User created successfully",
         email: req.body.email,
-        password: req.body.password
       });
       res.end();
     } catch (err) {
@@ -45,19 +56,19 @@ app.post("/users", async (req, res) => {
 app.post("/users/login", async (req, res) => {
   const data = req && JSON.stringify(req.body) != "{}" && req.body;
   if (data) {
-    const user = users.find((user) => user.email == data.email);
-    if (user == null) {
-      return res.status(400).send({ error: "Cannot find user" });
-    }
-
-    try {
-      if (await bcrypt.compare(data.password, user.password)) {
-        return res.status(201).send({ message: "You are logged in" });
-      } else {
-        return res.status(401).send({ message: "User is not allowed" });
+    const user = await find(data.email);
+    if (user) {
+      try {
+        if (await bcrypt.compare(data.password, user.password)) {
+          return res.status(201).send({ message: "You are logged in" });
+        } else {
+          return res.status(401).send({ message: "User is not allowed" });
+        }
+      } catch {
+        res.status(500).send({ error: "An error has occurred" });
       }
-    } catch {
-      res.status(500).send({ error: "An error has occurred" });
+    } else {
+      return res.status(400).send({ error: "Cannot find user" });
     }
   }
 });
